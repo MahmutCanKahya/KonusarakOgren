@@ -22,9 +22,19 @@ namespace KonusarakOgren.Quiz.MvcWebUI
         // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
         public void ConfigureServices(IServiceCollection services)
         {
-            
+
+            services.AddDbContext<QuizContext>();
+
             services.AddScoped<IUserService, UserManager>();
             services.AddScoped<IUserDal,EfUserDal>();
+            services.AddScoped<IExamService, ExamManager>();
+            services.AddScoped<IExamDal, EfExamDal>();
+
+            services.AddScoped<IAnswerService, AnswerManager>();
+            services.AddScoped<IAnswerDal, EfAnswerDal>();
+
+            services.AddScoped<IQuestionService, QuestionManager>();
+            services.AddScoped<IQuestionDal, EfQuestionDal>();
             services.AddMvc(option => option.EnableEndpointRouting = false);
         }
 

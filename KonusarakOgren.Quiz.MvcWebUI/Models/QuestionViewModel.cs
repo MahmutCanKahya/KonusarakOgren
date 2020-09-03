@@ -6,11 +6,8 @@ using System.Threading.Tasks;
 
 namespace KonusarakOgren.Quiz.MvcWebUI.Models
 {
-    public class PostListModel
+    public class QuestionViewModel
     {
-        public List<Exam> Exams { get; set; }
         public Question Question { get; set; }
-        public Answer Answer { get; set; }
-
     }
 }

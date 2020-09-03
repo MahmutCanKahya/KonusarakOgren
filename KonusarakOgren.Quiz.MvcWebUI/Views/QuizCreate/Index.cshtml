@@ -9,26 +9,27 @@
 <div>
     Quiz Create Page
 </div>
-<div class="accordion" id="accordionExample">
-    @foreach (var post in Model.Posts)
+<div class="accordion" id="accordionpostple">
+    @foreach (var exam in Model.Exams)
     {
         <div class="card">
             <div class="card-header" id="@string.Format("heading{0}", i)">
                 <h2 class="mb-0">
                     <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#@string.Format("collapse{0}", i)" aria-expanded="false" aria-controls="@string.Format("collapse{0}", i)">
-                        @post.Title
+                        @exam.ExamTitle
                     </button>
                 </h2>
             </div>
-            <div id="@string.Format("collapse{0}", i)" class="collapse" aria-labelledby="@string.Format("heading{0}", i)" data-parent="#accordionExample">
+            <div id="@string.Format("collapse{0}", i)" class="collapse" aria-labelledby="@string.Format("heading{0}", i)" data-parent="#accordionpostple">
                 <div class="card-body">
-                    <div class="mb-4"> @post.Description</div>
-                    <form>
+                    <div class="mb-4"> @exam.ExamText</div>
+
+                    <form asp-controller="QuizCreate" asp-action="CompleteExam" method="post">
                         <div class="input-group mb-3">
                             <div class="input-group-prepend">
                                 <span class="input-group-text">Soru 1</span>
                             </div>
-                            <input type="text" class="form-control" placeholder="Bir soru yaz">
+                            <input asp-for="Question.QuestionText" type="text" class="form-control" placeholder="Bir soru yaz">
                         </div>
                         <div class="row">
                             <div class="col-6">
@@ -36,7 +37,7 @@
                                     <div class="input-group-prepend">
                                         <span class="input-group-text">A)</span>
                                     </div>
-                                    <input type="text" class="form-control">
+                                    <input asp-for="Answer.AnswerText" type="text" class="form-control">
                                 </div>
                             </div>
                             <div class="col-6">
@@ -44,7 +45,7 @@
                                     <div class="input-group-prepend">
                                         <span class="input-group-text">B)</span>
                                     </div>
-                                    <input type="text" class="form-control">
+                                    <input asp-for="Answer.AnswerText" type="text" class="form-control">
                                 </div>
                             </div>
                         </div>
@@ -54,7 +55,7 @@
                                     <div class="input-group-prepend">
                                         <span class="input-group-text">C)</span>
                                     </div>
-                                    <input type="text" class="form-control">
+                                    <input asp-for="Answer.AnswerText" type="text" class="form-control">
                                 </div>
                             </div>
                             <div class="col-6">
@@ -62,18 +63,21 @@
                                     <div class="input-group-prepend">
                                         <span class="input-group-text">D)</span>
                                     </div>
-                                    <input type="text" class="form-control">
+                                    <input asp-for="Answer.AnswerText" type="text" class="form-control">
                                 </div>
                             </div>
                         </div><div class="form-group text-center">
                             <select class=" custom-select w-50">
                                 <option disabled selected>Doğru Cevap Seç</option>
-                                <option value="1">One</option>
-                                <option value="2">Two</option>
-                                <option value="3">Three</option>
+                                <option value="1">A</option>
+                                <option value="2">B)</option>
+                                <option value="3">C)</option>
+                                <option value="3">D)</option>
                             </select>
                         </div>
-
+                        <div class="form-group text-center">
+                            <input type="submit" value="Complete Shopping" class="btn btn-lg btn-success" />
+                        </div>
                     </form>
                 </div>
 
