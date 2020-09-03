@@ -9,7 +9,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KonusarakOgren.Quiz.Entitie
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KonusarakOgren.Quiz.DataAccess", "KonusarakOgren.Quiz.DataAccess\KonusarakOgren.Quiz.DataAccess.csproj", "{CDC1C60F-C5C7-4965-919A-1507C4C5A546}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Business", "Business\Business.csproj", "{C830C10E-C35A-4181-BDA3-A6FC6539A1CE}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KonusarakOgren.Quiz.Business", "Business\KonusarakOgren.Quiz.Business.csproj", "{C830C10E-C35A-4181-BDA3-A6FC6539A1CE}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KonusarakOgren.Quiz.MvcWebUI", "KonusarakOgren.Quiz.MvcWebUI\KonusarakOgren.Quiz.MvcWebUI.csproj", "{79E86AC6-A41A-4F3F-B535-04C17ADD86BC}"
 EndProject

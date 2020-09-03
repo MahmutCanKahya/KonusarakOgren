@@ -1,0 +1,84 @@
+﻿@using System.Threading.Tasks
+@model KonusarakOgren.Quiz.MvcWebUI.Models.PostListModel;
+@{
+    Layout = "~/Views/_Layout.cshtml";
+    var i = 0;
+}
+
+
+<div>
+    Quiz Create Page
+</div>
+<div class="accordion" id="accordionExample">
+    @foreach (var post in Model.Posts)
+    {
+        <div class="card">
+            <div class="card-header" id="@string.Format("heading{0}", i)">
+                <h2 class="mb-0">
+                    <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#@string.Format("collapse{0}", i)" aria-expanded="false" aria-controls="@string.Format("collapse{0}", i)">
+                        @post.Title
+                    </button>
+                </h2>
+            </div>
+            <div id="@string.Format("collapse{0}", i)" class="collapse" aria-labelledby="@string.Format("heading{0}", i)" data-parent="#accordionExample">
+                <div class="card-body">
+                    <div class="mb-4"> @post.Description</div>
+                    <form>
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text">Soru 1</span>
+                            </div>
+                            <input type="text" class="form-control" placeholder="Bir soru yaz">
+                        </div>
+                        <div class="row">
+                            <div class="col-6">
+                                <div class="input-group mb-3">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text">A)</span>
+                                    </div>
+                                    <input type="text" class="form-control">
+                                </div>
+                            </div>
+                            <div class="col-6">
+                                <div class="input-group mb-3">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text">B)</span>
+                                    </div>
+                                    <input type="text" class="form-control">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-6">
+                                <div class="input-group mb-3">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text">C)</span>
+                                    </div>
+                                    <input type="text" class="form-control">
+                                </div>
+                            </div>
+                            <div class="col-6">
+                                <div class="input-group mb-3">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text">D)</span>
+                                    </div>
+                                    <input type="text" class="form-control">
+                                </div>
+                            </div>
+                        </div><div class="form-group text-center">
+                            <select class=" custom-select w-50">
+                                <option disabled selected>Doğru Cevap Seç</option>
+                                <option value="1">One</option>
+                                <option value="2">Two</option>
+                                <option value="3">Three</option>
+                            </select>
+                        </div>
+
+                    </form>
+                </div>
+
+            </div>
+        </div>
+        i++;
+    }
+</div>

@@ -5,11 +5,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="3.1.7" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <ProjectReference Include="..\KonusarakOgren.Core\KonusarakOgren.Core.csproj" />
+    <ProjectReference Include="..\KonusarakOgren.Quiz.DataAccess\KonusarakOgren.Quiz.DataAccess.csproj" />
     <ProjectReference Include="..\KonusarakOgren.Quiz.Entities\KonusarakOgren.Quiz.Entities.csproj" />
   </ItemGroup>
 

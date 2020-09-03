@@ -4,4 +4,14 @@
     <TargetFramework>netcoreapp3.1</TargetFramework>
   </PropertyGroup>
 
+  <ItemGroup>
+    <PackageReference Include="HtmlAgilityPack" Version="1.11.24" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Business\KonusarakOgren.Quiz.Business.csproj" />
+    <ProjectReference Include="..\KonusarakOgren.Core\KonusarakOgren.Core.csproj" />
+    <ProjectReference Include="..\KonusarakOgren.Quiz.Entities\KonusarakOgren.Quiz.Entities.csproj" />
+  </ItemGroup>
+
 </Project>
