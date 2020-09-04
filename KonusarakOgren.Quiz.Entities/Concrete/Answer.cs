@@ -12,6 +12,7 @@ namespace KonusarakOgren.Quiz.Entities.Concrete
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int AnswerId { get; set; }
+        [Required]
         public string AnswerText { get; set; }
         public bool IsTrue { get; set; }
 

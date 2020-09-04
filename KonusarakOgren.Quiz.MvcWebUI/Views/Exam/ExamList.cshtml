@@ -19,12 +19,12 @@
             <tr>
                 <th scope="row">@exam.ExamId</th>
                 <td>@exam.ExamTitle</td>
-                <td>@exam.ExamCreateDate</td>
+                <td>@exam.ExamCreateDate.ToString("dd/MM/yyyy")</td>
                 <td>
-                    <a class="btn btn-outline-success">add to cart</a>
+                    <a class="btn btn-outline-success" href="/Exam/EnterExam/?examId=@exam.ExamId">Sınava Gir</a>
                 </td>
                 <td>
-                    <a class="btn btn-outline-danger" asp-controller="Exam" asp-action="Remove" asp-route-examId="@exam.ExamId">add to cart</a>
+                    <a class="btn btn-outline-danger" asp-controller="Exam" asp-action="Remove" asp-route-examId="@exam.ExamId">Sil</a>
                 </td>
             </tr>
         }

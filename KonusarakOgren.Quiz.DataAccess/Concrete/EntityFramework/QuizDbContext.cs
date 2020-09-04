@@ -6,7 +6,7 @@ using System.Text;
 
 namespace KonusarakOgren.Quiz.DataAccess.Concrete.EntityFramework
 {
-    public class QuizContext:DbContext
+    public class QuizDbContext:DbContext
     {
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {

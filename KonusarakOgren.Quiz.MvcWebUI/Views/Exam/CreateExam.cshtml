@@ -1,0 +1,100 @@
+﻿@using System.Threading.Tasks
+@model KonusarakOgren.Quiz.MvcWebUI.Models.PostListModel;
+@{
+    Layout = "~/Views/_Layout.cshtml";
+    var i = 0;
+    string[] opt = { "A", "B", "C", "D" };
+}
+<div class="accordion" id="accordionpostple">
+    @foreach (var exam in Model.Exams)
+    {
+
+        @using (Html.BeginForm("CreateExam", "Exam", FormMethod.Post))
+        {
+            @Html.TextBoxFor((p) => p.Exams.ElementAt(i).ExamTitle, new { type = "hidden" })
+            @Html.TextBoxFor((p) => p.Exams.ElementAt(i).ExamText, new { type = "hidden" })
+            Model.Exam = exam;
+            <div class="card">
+                <div class="card-header" id="@string.Format("heading{0}", i)">
+                    <h2 class="mb-0">
+                        <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#@string.Format("collapse{0}", i)" aria-expanded="false" aria-controls="@string.Format("collapse{0}", i)">
+                            @Model.Exam.ExamTitle
+                            @Html.TextBoxFor((p) => p.Exam.ExamTitle, new { type = "hidden" })
+                        </button>
+                    </h2>
+                </div>
+                <div id="@string.Format("collapse{0}", i)" class="collapse" aria-labelledby="@string.Format("heading{0}", i)" data-parent="#accordionpostple">
+                    <div class="card-body">
+                        <div class="mb-4"> @Model.Exam.ExamText @Html.TextBoxFor((p) => p.Exam.ExamText, new { type = "hidden" }) </div>
+                        @for (int j = 0; j < 4; j++)
+                        {
+
+                            <div class="input-group mb-3">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text">Soru @(j + 1)</span>
+                                </div>
+
+                                    @Html.TextBoxFor((p) => p.Exam.Questions[j].QuestionText, new { @class = "form-control", placeholder = "Bir soru yaz" })
+                                <br />
+                                    @Html.ValidationMessageFor((p) => p.Exam.Questions[j].QuestionText)
+                                
+                            </div>
+                            <div class="row">
+                                <div class="col-6">
+                                    <div class="input-group mb-3">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text">A)</span>
+                                        </div>
+                                        @Html.TextBoxFor(p => p.Exam.Questions[j].Answers[0].AnswerText, new { @class = "form-control" })
+                                        @Html.ValidationMessageFor(p => p.Exam.Questions[j].Answers[0].AnswerText)
+                                    </div>
+                                </div>
+                                <div class="col-6">
+                                    <div class="input-group mb-3">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text">B)</span>
+                                        </div>
+                                        @Html.TextBoxFor(p => p.Exam.Questions[j].Answers[1].AnswerText, new { @class = "form-control" })
+                                        @Html.ValidationMessageFor(p => p.Exam.Questions[j].Answers[1].AnswerText)
+                                    </div>
+                                </div>
+                                <div class="col-6">
+                                    <div class="input-group mb-3">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text">C)</span>
+                                        </div>
+                                        @Html.TextBoxFor(p => p.Exam.Questions[j].Answers[2].AnswerText, new { @class = "form-control" })
+                                        @Html.ValidationMessageFor(p => p.Exam.Questions[j].Answers[2].AnswerText)
+                                    </div>
+                                </div>
+                                <div class="col-6">
+                                    <div class="input-group mb-3">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text">D)</span>
+                                        </div>
+                                        @Html.TextBoxFor(p => p.Exam.Questions[j].Answers[3].AnswerText, new { @class = "form-control" })
+                                        @Html.ValidationMessageFor(p => p.Exam.Questions[j].Answers[3].AnswerText)
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group text-center">
+                                <label>Doğru Seçeneği Seç: </label>
+                                @Html.DropDownListFor((p) => p.TrueAnswers[j], (SelectList)ViewBag.Options
+                                    , new { @class = "form-control custom-select w-50" })
+                                @Html.ValidationMessageFor((p) => p.TrueAnswers[j])
+                            </div>
+
+
+
+                        }
+                        <div class="form-group text-center">
+                            <input type="submit" value="Sınavı Oluştur" class="btn btn-lg btn-success" />
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            i++;
+        }
+    }
+</div>

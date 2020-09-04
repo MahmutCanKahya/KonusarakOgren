@@ -1,4 +1,5 @@
-﻿using KonusarakOgren.Quiz.Entities.Concrete;
+﻿using KonusarakOgren.Quiz.Entities;
+using KonusarakOgren.Quiz.Entities.Concrete;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -14,5 +15,6 @@ namespace KonusarakOgren.Quiz.Business.Abstract
         void Update(Exam exam);
         void Delete(int examId);
         Exam FindExamByIdIncludeQuestionsAndAnswers(int examId);
+        List<QuestionAnswerResponse> CheckQuestionAnswers(List<QuestionAnswerRequest> request);
     }
 }

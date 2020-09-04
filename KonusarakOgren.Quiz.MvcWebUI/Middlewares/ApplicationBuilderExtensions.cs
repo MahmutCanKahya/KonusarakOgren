@@ -6,7 +6,7 @@ using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace Werwa.MvcWebUI.Middlewares
+namespace KonusarakOgren.Quiz.MvcWebUI
 {
     public static class ApplicationBuilderExtensions
     {

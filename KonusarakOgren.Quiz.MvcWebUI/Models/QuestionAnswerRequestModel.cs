@@ -5,9 +5,9 @@ using System.Threading.Tasks;
 
 namespace KonusarakOgren.Quiz.MvcWebUI.Models
 {
-    public class PostModel
+    public class QuestionAnswerRequestModel
     {
-        public string ExamTitle { get; set; }
-        public string ExamText { get; set; }
+        public int QuestionId { get; set; }
+        public int MarkedAnswerId { get; set; }
     }
 }

@@ -32,11 +32,11 @@ namespace KonusarakOgren.Quiz.MvcWebUI.Controllers
                 {
                     if (result.RoleType == 1)
                     {
-                        return RedirectToAction("Index", "QuizCreate");
+                        return RedirectToAction("CreateExam", "Exam");
                     }
                     if (result.RoleType == 2)
                     {
-                        return RedirectToAction("Index", "Quiz");
+                        //return RedirectToAction("Index", "Quiz");
                     }
                     
                 }

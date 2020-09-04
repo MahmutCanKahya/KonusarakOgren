@@ -1,5 +1,4 @@
 ﻿using KonusarakOgren.Quiz.Entities.Concrete;
-using Microsoft.AspNetCore.Mvc.Rendering;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,15 +6,15 @@ using System.Threading.Tasks;
 
 namespace KonusarakOgren.Quiz.MvcWebUI.Models
 {
-    public class PostListModel
+    public class ExamViewModel
     {
-        public PostListModel()
+        public ExamViewModel()
         {
-            this.TrueAnswers = new string[4];
+            MarkedAnswers = new Dictionary<int, int>();
         }
-        public List<Exam> Exams { get; set; }
+       
         public Exam Exam { get; set; }
-        public string[] TrueAnswers { get; set; }
-
+        //first int=>question id,,,,, second int=> marked answer id
+        public Dictionary<int, int> MarkedAnswers { get; set; }
     }
 }

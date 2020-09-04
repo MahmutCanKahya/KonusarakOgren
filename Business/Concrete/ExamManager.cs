@@ -2,6 +2,7 @@
 using KonusarakOgren.Quiz.Business.Abstract;
 using KonusarakOgren.Quiz.DataAccess.Abstract;
 using KonusarakOgren.Quiz.DataAccess.Concrete.EntityFramework;
+using KonusarakOgren.Quiz.Entities;
 using KonusarakOgren.Quiz.Entities.Concrete;
 using System;
 using System.Collections.Generic;
@@ -34,7 +35,20 @@ namespace KonusarakOgren.Quiz.Business.Concrete
 
         public int Add(Exam exam)
         {
+            exam.ExamCreateDate = DateTime.Today;
             _examDal.Add(exam);
+            int examId = exam.ExamId;
+            foreach (var question in exam.Questions)
+            {
+                question.ExamId = examId;
+                _questionDal.Add(question);
+                int questionId = question.QuestionId;
+                foreach (var answer in question.Answers)
+                {
+                    answer.QuestionId = questionId;
+                    _answerDal.Add(answer);
+                }
+            }
             return exam.ExamId;
         }
 
@@ -45,16 +59,23 @@ namespace KonusarakOgren.Quiz.Business.Concrete
 
         public void Delete(int examId)
         {
-            /*foreach (var question in exam.Questions)
+            var exam = _examDal.Get(p => p.ExamId == examId);
+            var questions = exam.Questions = _questionDal.GetList()
+                .Where(question => question.ExamId == examId)
+                .ToList();
+            foreach (var question in questions)
             {
-                foreach (var answer in question.Answers)
+                var answers = question.Answers = _answerDal.GetList()
+                    .Where(p => p.QuestionId == question.QuestionId)
+                    .ToList();
+                foreach (var answer in answers)
                 {
-                    _answerService.Delete(answer.AnswerId);
+                    _answerDal.Delete(answer);
                 }
-                _questionService.Delete(question.QuestionId);
-            }*/
-           //_examDal.Delete(exam);
-            _examDal.Delete(new Exam { ExamId = examId });
+                _questionDal.Delete(question);
+            }
+           _examDal.Delete(exam);
+           // _examDal.Delete(new Exam { ExamId = examId });
         }
 
         public Exam FindExamByIdIncludeQuestionsAndAnswers(int examId)
@@ -62,17 +83,28 @@ namespace KonusarakOgren.Quiz.Business.Concrete
             
             var exam = _examDal.Get(p=>p.ExamId==examId);
             var questions=exam.Questions = _questionDal.GetList()
-                .Where(question =>
-                question.Exam != null && question.Exam.ExamId == exam.ExamId)
+                .Where(question =>question.ExamId==examId)
                 .ToList();
-            foreach (var answer in questions)
+            foreach (var question in questions)
             {
-                answer.Answers = _answerDal.GetList()
-                    .Where(answer =>
-                    answer.Question != null && answer.Question.QuestionId == answer.QuestionId)
+                question.Answers = _answerDal.GetList()
+                    .Where(p => p.QuestionId== question.QuestionId)
                     .ToList();
             }
             return exam;
+        }
+        public List<QuestionAnswerResponse> CheckQuestionAnswers(List<QuestionAnswerRequest> request)
+        {
+            var response = new List<QuestionAnswerResponse>();
+
+            foreach (var questionAnswer in request)
+            {
+                var correctAnswer = _questionDal.CheckQuestionAnswer(questionAnswer);
+
+                response.Add(correctAnswer);
+            }
+
+            return response;
         }
     }
 }

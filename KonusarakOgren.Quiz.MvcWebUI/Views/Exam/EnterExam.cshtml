@@ -1,0 +1,81 @@
+﻿@model KonusarakOgren.Quiz.MvcWebUI.Models.ExamViewModel;
+@{
+    Layout = "~/Views/_Layout.cshtml";
+    int i = 0;
+    string[] opt = { "A", "B", "C", "D" };
+}
+<p class="text-center text-uppercase font-weight-bold">@Model.Exam.ExamTitle</p>
+<p class="text-justify">@Model.Exam.ExamText</p>
+    <div class="row mb-2">
+        @foreach (var question in Model.Exam.Questions)
+        {
+            i++;
+            int y = 0;
+            <div class="col-6">
+                <p class="text-justify font-weight-bold">@i) @question.QuestionText</p>
+                <div class="list-group">
+                    @foreach (var answer in question.Answers)
+                    {
+                        y++;
+                        <div class="input-group-prepend mb-1">
+                            <span class="input-group-text">@opt[y - 1])</span>
+                            <a class="list-group-item list-group-item-action" id="@answer.AnswerId" onclick="SelectAnswer(@question.QuestionId,@answer.AnswerId);">@answer.AnswerText</a>
+                        </div>
+                    }
+                </div>
+            </div>
+
+        }
+
+    </div>
+    <div id="alert" class="alert alert-warning fade show" role="alert">
+        <strong>Lütfen Sınavı Tamamlayınız.</strong>
+    </div>
+    <div class="form-group text-center">
+        <input onclick="save(@Model.Exam.Questions.Count)" type="submit" value="Sınavı Tamamla" class="btn btn-lg btn-success" />
+    </div>
+
+@section Scripts{
+    <script type="text/javascript">
+        var answerList = [];
+        function SelectAnswer(questionId, answerId) {
+            var answerModel = {
+                questionId: questionId,
+                markedAnswerId: answerId
+            };
+            var beforeChange = answerList.filter(x => x.questionId == answerModel.questionId);
+            if (beforeChange.length > 0) {
+                $("#" + beforeChange[0].markedAnswerId).attr('style', 'background-color:#fff');
+            }
+            var filteredAnswers = answerList.filter(x => x.questionId != answerModel.questionId);
+            filteredAnswers.push(answerModel);
+            answerList = filteredAnswers;
+            for (var i = 0; i < answerList.length; i++) {
+                $("#" + answerList[i].markedAnswerId).attr('style', 'background-color:#c1c1c1');
+            }
+        }
+        function save(questionCount) {
+            if (answerList.length == questionCount) {
+                $(".alert").alert('close')
+                $.ajax({
+                    type: "POST",
+                    data: { request: answerList },
+                    url: "/Exam/CheckQuestionAnswers",
+                    success: function (response) {
+                        for (var i = 0; i < response.length; i++) {
+                            console.log(response[i]);
+                            if (response[i].isTrue) {
+                                $("#" + response[i].markedAnswerId).attr('style', 'background-color:#28a745');
+                            } else {
+                                $("#" + response[i].markedAnswerId).attr('style', 'background-color:#a20000;color:#000');
+                            }
+                        }
+                    }
+                });
+            } else {
+                $('.alert').alert()
+            }
+        }
+
+    </script>
+}

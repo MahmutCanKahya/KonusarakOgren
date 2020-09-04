@@ -52,8 +52,11 @@ namespace KonusarakOgren.Quiz.MvcWebUI.Helpers
                 exam.ExamTitle = PostListItem.Descendants("h5")
                     .Where(node => node.GetAttributeValue("class", "")
                     .Equals("post-listing-list-item__title")).FirstOrDefault().InnerText;
+                if(PostDescription != null)
+                {
 
-                PostList.Add(exam);
+                    PostList.Add(exam);
+                }
                 
             }
             return PostList;
@@ -66,11 +69,20 @@ namespace KonusarakOgren.Quiz.MvcWebUI.Helpers
 
             var htmlDocument = new HtmlDocument();
             htmlDocument.LoadHtml(html);
-            var DescriptionHtmlList = htmlDocument.DocumentNode.Descendants("div")
-                .Where(node => node.GetAttributeValue("class", "")
-                .Equals("grid--item body body__container article__body grid-layout__content")).ToList();
-            var PostDescription=DescriptionHtmlList[0].Descendants("p").FirstOrDefault().InnerText;
-            return PostDescription;
+            try
+            {
+                var DescriptionHtmlList = htmlDocument.DocumentNode.Descendants("div")
+               .Where(node => node.GetAttributeValue("class", "")
+               .Equals("grid--item body body__container article__body grid-layout__content")).ToList();
+                var PostDescription = DescriptionHtmlList[0].Descendants("p").FirstOrDefault().InnerText;
+
+                return PostDescription;
+            }
+            catch
+            {
+                return null;
+            }
+           
         }
     }
  

@@ -7,7 +7,7 @@ using System.Text;
 
 namespace KonusarakOgren.Quiz.DataAccess.Concrete.EntityFramework
 {
-    public class EfAnswerDal : EfEntityRepositoryBase<Answer, QuizContext>, IAnswerDal
+    public class EfAnswerDal : EfEntityRepositoryBase<Answer, QuizDbContext>, IAnswerDal
     {
     }
 }

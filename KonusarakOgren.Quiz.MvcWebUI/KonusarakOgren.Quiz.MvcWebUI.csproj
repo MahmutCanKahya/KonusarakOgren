@@ -23,4 +23,11 @@
     <ProjectReference Include="..\KonusarakOgren.Quiz.Entities\KonusarakOgren.Quiz.Entities.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Content Update="Views\Exam\CreateExam.cshtml">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+  </ItemGroup>
+
 </Project>

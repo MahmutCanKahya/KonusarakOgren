@@ -12,7 +12,6 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Routing;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Werwa.MvcWebUI.Middlewares;
 
 namespace KonusarakOgren.Quiz.MvcWebUI
 {
@@ -23,7 +22,7 @@ namespace KonusarakOgren.Quiz.MvcWebUI
         public void ConfigureServices(IServiceCollection services)
         {
 
-            services.AddDbContext<QuizContext>();
+            services.AddDbContext<QuizDbContext>();
 
             services.AddScoped<IUserService, UserManager>();
             services.AddScoped<IUserDal,EfUserDal>();

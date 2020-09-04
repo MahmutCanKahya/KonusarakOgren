@@ -12,12 +12,13 @@ namespace KonusarakOgren.Quiz.Entities.Concrete
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int QuestionId { get; set; }
+        [Required]
         public string QuestionText { get; set; }
         public int ExamId { get; set; }
         [ForeignKey("ExamId ")]
         public Exam Exam { get; set; }
-        
-        public ICollection<Answer> Answers { get; set; }
+        //public int TrueAnswerId { get; set; }
+        public List<Answer> Answers { get; set; }
         
 
     }

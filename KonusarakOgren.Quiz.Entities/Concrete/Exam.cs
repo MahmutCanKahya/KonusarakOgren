@@ -16,6 +16,6 @@ namespace KonusarakOgren.Quiz.Entities.Concrete
         public string ExamText { get; set; }
         public DateTime ExamCreateDate { get; set; }
 
-        public virtual ICollection<Question> Questions { get; set; }
+        public virtual List<Question> Questions { get; set; }
     }
 }

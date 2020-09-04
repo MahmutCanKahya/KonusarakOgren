@@ -36,5 +36,6 @@ namespace KonusarakOgren.Quiz.Business.Concrete
         {
             _questionDal.Update(question);
         }
+
     }
 }
