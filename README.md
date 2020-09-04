@@ -15,6 +15,10 @@
  - Kaydedilen sınavların listelenmesi, silinmesi,
  - Seçilen sınavın gösterilmedi verilen cevaba göre doğru ve yanlış cevapların gösterilmesi.
 
+**Test Kullanıcısı**:
+
+**UserName**: admin **Password**: admin
+
 ## Giriş Ekranı
 
 ![An image](https://github.com/MahmutCanKahya/KonusarakOgren/blob/master/ScreenShots/giris.png)
