@@ -19,6 +19,11 @@
 
 **UserName**: admin **Password**: admin
 
+## Veri Tabanı
+**ER-Diyagramı**
+
+![An image](https://github.com/MahmutCanKahya/KonusarakOgren/blob/master/ScreenShots/ER_diagram.png)
+
 ## Giriş Ekranı
 
 ![An image](https://github.com/MahmutCanKahya/KonusarakOgren/blob/master/ScreenShots/giris.png)
