@@ -38,10 +38,8 @@ namespace KonusarakOgren.Quiz.MvcWebUI.Controllers
         {
             if (!ModelState.IsValid)
             {
-                ViewBag.Options = new SelectList(options);
-                model.Exams = await HtmlScrap.GetHtmlAsync();
-                model.TrueAnswers = new string[4];
-                return View(model);
+                TempData.Add("message", "Sınav Eklenmedi!!");
+                return RedirectToAction("CreateExam", "Exam");
             }
             Exam exam = model.Exam;
             string[] trueAnswerList = model.TrueAnswers;
@@ -76,7 +74,7 @@ namespace KonusarakOgren.Quiz.MvcWebUI.Controllers
                 i++;
             }
             _examService.Add(exam);
-            return RedirectToAction("CreateExam", "Exam");
+            return RedirectToAction("ExamList", "Exam");
             
         }
         public ActionResult ExamList()
